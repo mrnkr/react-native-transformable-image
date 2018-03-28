@@ -2,6 +2,10 @@
 
 A pure JavaScript written transformable image component, like PhotoView or ImageViewer, supports gestures like pan, pinch, double tab and fling, works with both iOS and Android.
 
+THIS FORK is modified to use the package [react-native-expo-image-cache](https://github.com/wcandillon/react-native-expo-image-cache.git) by William Candillon (Thank you :)) instead of the react-native Image widget since this one caches images on its own and makes it really simple to show previews to images.
+I also fixed an issue I had with PropTypes being imported from react instead of the prop-types package. Not sure if it's really an issue but it wouldn't work unless I changed it, so I did.
+The ViewTransformer dependency I also changed to point at my own fork which has its own minor changes, nothing that affects the behavior substantially.
+
 ![](Demo/demo.gif)
 
 
@@ -16,19 +20,15 @@ Written in pure JS, this component should be one of the most easy to use compone
 
 ## Usage
 
-Quite same as the official **[Image](https://facebook.github.io/react-native/docs/image.html)**, as below shows:
+Quite same as with the package **[react-native-expo-image-cache](https://github.com/wcandillon/react-native-expo-image-cache.git)**, as shown below:
 
-```
-import Image from 'react-native-transformable-image';
+```javascript
+import Image from "react-native-transformable-image";
 ...
 render() {
     return (
       ...
-        <Image
-          style={{width: width, height: height}}
-          source={{uri: 'https://raw.githubusercontent.com/yoaicom/resources/master/images/game_of_thrones_1.jpg'}}
-          //pixels={{width: 3607, height: 2400}}
-        />
+        <Image style={{width: width, height: height}} {...{ preview: { uri: preview } , uri}} />
       ...
     );
   }
